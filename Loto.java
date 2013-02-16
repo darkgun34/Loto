@@ -17,31 +17,42 @@ public class loto{
       {
         System.out.println("choisir un nombre entre 1 et 49");
         valueScan = s.nextInt();
-        	if( valueScan >49 || valueScan < 1)
-        		{
-        		System.out.println("ce n'est pas possible recommencer entre 1 et 49 j'ai demander");
-        		i--;
-        		
-        		}
+         if( valueScan >49 || valueScan < 1)
+         {
+         System.out.println("ce n'est pas possible recommencer entre 1 et 49 j'ai demander");
+         i--;
+        
+         }
         else
-        		{
-        		System.out.println("ok");
+         {
+         System.out.println("ok");
             grille[i] = valueScan;
-        		}
-        	
-      } 
-      else 
-      	{
+         }
+        
+      }
+      else
+       {
         System.out.println("choisir un nombre entre 1 et 10");
         valueScan = s.nextInt();
-        	if (grille[i] >10 || grille[i] < 1)
-        		{
-        		System.out.println("ce n'est pas possible recommencer entre 1 et 10 j'ai demander");
-        		i--;
-        	}
+         if (valueScan >10 || valueScan < 1)
+         {
+         System.out.println("ce n'est pas possible recommencer entre 1 et 10 j'ai demander");
+         i--;
+         }
           else
-            grille[i] = valueScan;
-      	}
+            for (int j =0; j<i-1;j++)
+            	{
+            	if(grille[j]== valueScan)
+            		{
+            		i = i--;
+            		j = i;
+            		}
+            	else if(j == i-1)
+            			{
+            			grille[i] = valueScan;
+            			}
+            	}
+       }
     }
 
     int lower = 1; //inclus
@@ -50,11 +61,14 @@ public class loto{
         
     for (int l = 0; l < 5; l++)
     {
-    	  a = (int)(Math.random() * (higher-lower)) + lower;
+     a = (int)(Math.random() * (higher-lower)) + lower;
         for(int i=0; i<l; i++)
         {
           if(a==tirage[i])
-            l--;
+            {
+        	  l--;
+        	  i = l;
+            }
           else if(i == l-1)
             tirage[l] = (int)a;
         }
@@ -63,7 +77,7 @@ public class loto{
     
     lower = 1; // inclus
     higher = 11; //exclus
-	  int b = (int)(Math.random() * (higher-lower)) + lower;
+int b = (int)(Math.random() * (higher-lower)) + lower;
     tirage[5] = (int)b;
     
     
@@ -72,16 +86,16 @@ public class loto{
     {
       for (int n = 0; n < 6; n++)
       {
-        if (grille[m] == tirage[n]) 
-        	{
-        	compteur++;
-        	}
+        if (grille[m] == tirage[n])
+         {
+         compteur++;
+         }
       }
     }
     
     
     System.out.println("tu a "+compteur+" chiffre du loto de bon");
-    if (grille[5] == tirage[5]) 
+    if (grille[5] == tirage[5])
     {
       System.out.println("tu a le numero chance");
     }
