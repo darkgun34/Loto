@@ -1,6 +1,4 @@
-/*me manque les verif si l'utilisateur n'a pas des valeur identique de même pour l'ordi
 
- */
 import java.util.*;
 
 public class loto{
@@ -80,7 +78,9 @@ public class loto{
     
     System.out.println("tu a "+compteur+" chiffre du loto de bon");
     if (grille[5] == tirage[5]) 
-    {System.out.println("tu a le numero chance");}
+    {
+      System.out.println("tu a le numero chance");
+    }
 
   }
 }
