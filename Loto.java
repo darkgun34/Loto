@@ -1,4 +1,3 @@
-
 import java.util.*;
 
 public class loto{
@@ -9,6 +8,7 @@ public class loto{
     int[] grille = new int[6];
     int[] tirage = new int[6];
     Scanner s = new Scanner(System.in);
+    int valueScan = 0;
 
  for (int i = 0 ; i < 6; i++) // pour le joueur
  {
@@ -16,51 +16,55 @@ public class loto{
       if (i < 5) //faut que ce soit inferieur sinon sa boule 6 fois et donc 6 demandes de nombres
       {
         System.out.println("choisir un nombre entre 1 et 49");
-        grille[i] = s.nextInt();
-        	if( grille[i] >49 || grille[i] < 1)
+        valueScan = s.nextInt();
+        	if( valueScan >49 || valueScan < 1)
         		{
         		System.out.println("ce n'est pas possible recommencer entre 1 et 49 j'ai demander");
-        		i = i--;
+        		i--;
         		
         		}
-        	if (grille[i] > 1 && grille[i] <50)
+        else
         		{
         		System.out.println("ok");
-        		i = i++;
+            grille[i] = valueScan;
         		}
         	
       } 
       else 
       	{
         System.out.println("choisir un nombre entre 1 et 10");
-        grille[i] = s.nextInt();
+        valueScan = s.nextInt();
         	if (grille[i] >10 || grille[i] < 1)
         		{
         		System.out.println("ce n'est pas possible recommencer entre 1 et 10 j'ai demander");
-        		i = i--;
-        		}
+        		i--;
+        	}
+          else
+            grille[i] = valueScan;
       	}
     }
 
- 
-    for (int l = 0; l < 6; l++)
+    int lower = 1; //inclus
+    int higher = 50; // exclus
+    int a;
+        
+    for (int l = 0; l < 5; l++)
     {
-      if (l <= 5)
-      {
-    	  int lower = 1; //inclus
-    	  int higher = 50; // exclus
+    	  a = (int)(Math.random() * (higher-lower)) + lower;
+        for(int i=0; i<l; i++)
+        {
+          if(a==tirage[i])
+            l--;
+          else if(i == l-1)
+            tirage[l] = (int)a;
+        }
 
-    	  int a = (int)(Math.random() * (higher-lower)) + lower;
-        tirage[l] = (int)a ;
-        	
-      } 
-      else {
-    	  int lower = 1; // inclus
-    	  int higher = 11; //exclus
-    	  int b = (int)(Math.random() * (higher-lower)) + lower;
-        tirage[l] = (int)b;
-      		}
     }
+    
+    lower = 1; // inclus
+    higher = 11; //exclus
+	  int b = (int)(Math.random() * (higher-lower)) + lower;
+    tirage[5] = (int)b;
     
     
  
